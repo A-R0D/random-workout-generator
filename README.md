@@ -1,2 +1,2 @@
 # random-workout-generator
-Created this code using python to generate random workouts
+Created this code using Python to generate random workouts for my Introduction to python class
