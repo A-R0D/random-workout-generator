@@ -1,41 +1,42 @@
-import random 
+import random
 
 # Dictionary of exercises categorized by muscle groups
 exercises = {
-  "Chest": ["Push ups", "Chest fly", "Dumbbell press", "Bench press", "Chest dips"], 
-  "Legs": ["Lunges", "Squats", "Leg extensions", "Calf raises", "Narrow squats"], 
-  "Back": ["Lat pulldowns", "Pull ups", "Bent over rows", "Chin ups", "Trap raises"], 
-  "Arms": ["Tricep extension", "Bicep curls", "Shoulder press", "Lateral raise"], 
-  "Core": ["Reverse crunches", "Leg raises", "Plank", "Ab roller"], 
-  "Full body": ["Clean and press", "Jumping jacks", "Kettlebell swings", "Deadlift"]
-  
+    "Chest": ["Push ups", "Chest fly", "Dumbbell press", "Bench press", "Chest dips"],
+    "Legs": ["Lunges", "Squats", "Leg extensions", "Calf raises", "Narrow squats"],
+    "Back": ["Lat pulldowns", "Pull ups", "Bent over rows", "Chin ups", "Trap raises"],
+    "Arms": ["Tricep extension", "Bicep curls", "Shoulder press", "Lateral raise"],
+    "Core": ["Reverse crunches", "Leg raises", "Plank", "Ab roller"],
+    "Full body": ["Clean and press", "Jumping jacks", "Kettlebell swings", "Deadlift"]
 }
 
-# Function to generate a random workout based on the provided muscle groups 
+# Function to generate a random workout based on the provided muscle groups
 def generate_random_workout(muscles, num_exercises):
-  random_workout = []
-  
- # Repeat over the provided muscle groups
-  for muscle in muscles:
-    if muscle in exercises:
-      # Select a specified number of random exercises from the exercise list for each muscle group 
-      random_exercises = random.sample(exercises[muscle], num_exercises)
-      # Add the random exercises to the random_workout list 
-      random_workout.extend(random_exercises)
-
-  return random_workout
+    random_workout = []
+    
+    # Repeat over the provided muscle groups
+    for muscle in muscles:
+        muscle = muscle.strip().title()  # Strip whitespace and capitalize correctly
+        if muscle in exercises:
+            # Select a specified number of random exercises from the exercise list for each muscle group
+            random_exercises = random.sample(exercises[muscle], num_exercises)
+            # Add the random exercises to the random_workout list
+            random_workout.extend(random_exercises)
+        else:
+            print(f"Muscle group '{muscle}' not found.")
+    
+    return random_workout
 
 # Prompt the user for muscle groups and number of exercises
 muscles = input(
-  "Which muscles are you trying to workout? (comma-seperated): ").split(",")
+    "Which muscles are you trying to workout? (comma-separated): ").split(",")
 num_exercises = int(
-  input("How many random exercises do you want to generate for each muscle? "))
+    input("How many random exercises do you want to generate for each muscle? "))
 
 # Generate a random workout based on the provided muscle groups and number of exercises
 random_workout = generate_random_workout(muscles, num_exercises)
 
 # Display the generated random workout
-print("Random Workout:")
+print("\nRandom Workout:")
 for index, exercise in enumerate(random_workout, start=1):
-  print(f"{index}. {exercise}")
-  
+    print(f"{index}. {exercise}")
